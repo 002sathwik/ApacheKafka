@@ -17,17 +17,22 @@ async function init() {
   rl.prompt();
 
   rl.on("line", async function (line) {
-    const [riderName, location] = line.split(" ");
-    await producer.send({
-      topic: "rider-updates",
-      messages: [
-        {
-          partition: location.toLowerCase() === "north" ? 0 : 1,
-          key: "location-update",
-          value: JSON.stringify({ name: riderName, location }),
-        },
-      ],
-    });
+    try {
+      const [riderName, location] = line.split(" ");
+      const partition = location.toLowerCase() === "north" ? 0 : 1;
+      await producer.send({
+        topic: "rider-updates",
+        messages: [
+          {
+            partition: partition,
+            key: "location-update",
+            value: JSON.stringify({ name: riderName, location }),
+          },
+        ],
+      });
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
   }).on("close", async () => {
     await producer.disconnect();
   });

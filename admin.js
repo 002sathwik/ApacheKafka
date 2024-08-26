@@ -11,11 +11,12 @@ async function init() {
   await admin.createTopics({
     topics: [
       {
-        topic: "riderUpdate",
+        topic: "rider-updates",
         numPartitions: 2,
       },
     ],
   });
+  
   console.log("Topics created");
 
   await admin.disconnect();
