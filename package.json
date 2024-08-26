@@ -1,0 +1,22 @@
+{
+  "name": "kafka",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/002sathwik/ApacheKafka.git"
+  },
+  "author": "sathwik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/002sathwik/ApacheKafka/issues"
+  },
+  "homepage": "https://github.com/002sathwik/ApacheKafka#readme",
+  "description": "",
+  "dependencies": {
+    "kafkajs": "^2.2.4"
+  }
+}

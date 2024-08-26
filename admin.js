@@ -1,0 +1,29 @@
+const { Kafka } = require("kafkajs");
+
+const kafka = new Kafka({
+  clientId: "kafka",
+  brokers: ["192.168.1.105:9092"],
+});
+
+async function init() {
+  const admin = kafka.admin();
+  console.log("Admin connecting...");
+
+  await admin.connect();
+  console.log("Admin connection successful");
+
+  console.log("Creating topics...");
+  await admin.createTopics({
+    topics: [
+      {
+        topic: "riderUpdate",
+        numPartitions: 2,
+      },
+    ],
+  });
+  console.log("Topics created");
+
+  await admin.disconnect();
+}
+
+init().catch(console.error);
